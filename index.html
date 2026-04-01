@@ -264,69 +264,100 @@ body {
 
 /* ====== PRICING ====== */
 .pricing { background: var(--white); }
-.pricing-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
-  margin-top: 56px; max-width: 860px; margin-left: auto; margin-right: auto;
+.price-package {
+  margin-top: 56px; max-width: 780px; margin-left: auto; margin-right: auto;
+  background: var(--white); border: 2px solid var(--gold); border-radius: 20px;
+  overflow: hidden; position: relative;
 }
-.price-card {
-  border-radius: 16px; padding: 48px 40px; position: relative;
+.price-package-badge {
+  text-align: center; background: var(--gold); color: var(--white);
+  font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  padding: 10px 20px;
 }
-.price-setup {
-  background: var(--gray-50); border: 1px solid var(--gray-200);
+.price-package-header {
+  text-align: center; padding: 40px 40px 0;
 }
-.price-membership {
-  background: var(--navy); color: var(--white);
-  border: 2px solid var(--gold);
+.price-package-header h3 {
+  font-family: 'Raleway', sans-serif; font-size: 28px; font-weight: 800;
+  color: var(--navy); margin-bottom: 12px;
 }
-.price-badge {
-  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-  background: var(--gold); color: var(--white); font-size: 12px; font-weight: 700;
-  letter-spacing: 1px; text-transform: uppercase; padding: 6px 20px;
-  border-radius: 20px;
+.price-package-header .price-tagline {
+  font-size: 16px; color: var(--text-light); line-height: 1.6; max-width: 560px; margin: 0 auto;
 }
-.price-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-.price-setup h3 { color: var(--navy); }
-.price-membership h3 { color: var(--white); }
-.price-amount {
-  font-family: 'Raleway', sans-serif; font-size: 48px; font-weight: 800;
-  margin: 16px 0 4px;
+.price-components {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 32px 40px 0;
 }
-.price-setup .price-amount { color: var(--navy); }
-.price-membership .price-amount { color: var(--gold); }
-.price-period { font-size: 14px; margin-bottom: 24px; }
-.price-setup .price-period { color: var(--gray-400); }
-.price-membership .price-period { color: rgba(255,255,255,0.5); }
-.price-desc { font-size: 15px; line-height: 1.6; margin-bottom: 28px; }
-.price-setup .price-desc { color: var(--text-light); }
-.price-membership .price-desc { color: rgba(255,255,255,0.65); }
-.price-list { list-style: none; margin-bottom: 32px; }
-.price-list li {
-  padding: 10px 0; font-size: 14px; display: flex; align-items: flex-start; gap: 10px;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+.price-component {
+  padding: 24px 24px 28px; position: relative;
 }
-.price-membership .price-list li { border-bottom-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8); }
-.price-list li:last-child { border-bottom: none; }
+.price-component:first-child {
+  border-right: 1px solid var(--gray-200);
+}
+.price-component-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.price-component:first-child .price-component-label { color: var(--navy); }
+.price-component:last-child .price-component-label { color: var(--gold); }
+.price-component h4 {
+  font-family: 'Raleway', sans-serif; font-size: 18px; font-weight: 700;
+  color: var(--navy); margin-bottom: 6px;
+}
+.price-component .price-amount {
+  font-family: 'Raleway', sans-serif; font-weight: 800; margin-bottom: 4px;
+}
+.price-component:first-child .price-amount { font-size: 32px; color: var(--navy); }
+.price-component:last-child .price-amount { font-size: 32px; color: var(--gold); }
+.price-component .price-period { font-size: 13px; color: var(--gray-400); margin-bottom: 16px; }
+.price-component .price-desc { font-size: 14px; color: var(--text-light); line-height: 1.5; margin-bottom: 16px; }
+.price-component .price-list { list-style: none; margin: 0; }
+.price-component .price-list li {
+  padding: 6px 0; font-size: 13px; display: flex; align-items: flex-start; gap: 8px;
+  color: var(--text); border-bottom: none;
+}
 .price-check { color: var(--gold); font-weight: 700; flex-shrink: 0; }
-.price-btn {
-  display: block; width: 100%; text-align: center; padding: 14px 24px;
-  border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none;
-  transition: all 0.2s;
+.price-package-total {
+  text-align: center; padding: 24px 40px; margin: 0 40px;
+  border-top: 2px solid var(--gray-200); border-bottom: 2px solid var(--gray-200);
 }
-.price-setup .price-btn {
-  background: var(--navy); color: var(--white);
+.price-package-total .total-label {
+  font-size: 13px; font-weight: 600; color: var(--text-light); text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 4px;
 }
-.price-setup .price-btn:hover { background: var(--navy-light); transform: translateY(-1px); }
-.price-membership .price-btn {
-  background: var(--gold); color: var(--white);
+.price-package-total .total-amount {
+  font-family: 'Raleway', sans-serif; font-size: 20px; font-weight: 800; color: var(--navy);
+}
+.price-package-total .total-amount span { color: var(--gold); }
+.price-package-total .total-note {
+  font-size: 13px; color: var(--text-light); margin-top: 4px;
+}
+.price-package-cta {
+  text-align: center; padding: 28px 40px 36px;
+}
+.price-package-cta .price-btn {
+  display: inline-block; padding: 16px 48px; border-radius: 8px;
+  font-size: 16px; font-weight: 700; text-decoration: none;
+  background: var(--gold); color: var(--white); transition: all 0.2s;
   box-shadow: 0 4px 16px rgba(46,139,139,0.3);
 }
-.price-membership .price-btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(46,139,139,0.4); }
-.price-founding {
-  text-align: center; margin-top: 32px; padding: 24px;
-  background: var(--gold-subtle); border-radius: 12px;
-  grid-column: 1 / -1;
+.price-package-cta .price-btn:hover {
+  background: var(--gold-light); transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(46,139,139,0.4);
 }
-.price-founding p { font-size: 15px; color: var(--navy); line-height: 1.6; }
+.price-founding {
+  text-align: center; margin-top: 28px; padding: 24px 40px;
+  background: var(--gold-subtle); border-radius: 0 0 18px 18px;
+}
+.price-founding p { font-size: 14px; color: var(--navy); line-height: 1.6; margin: 0; }
+@media (max-width: 768px) {
+  .price-components { grid-template-columns: 1fr; }
+  .price-component:first-child { border-right: none; border-bottom: 1px solid var(--gray-200); }
+  .price-package-header { padding: 32px 24px 0; }
+  .price-components { padding: 24px 24px 0; }
+  .price-package-total { margin: 0 24px; }
+  .price-package-cta { padding: 24px 24px 28px; }
+  .price-founding { padding: 20px 24px; }
+}
 .price-founding strong { color: var(--gold); }
 
 /* ====== PROCESS ====== */
@@ -1570,46 +1601,55 @@ body {
       <h2 class="section-title">Clear Pricing. Real Value.</h2>
       <p class="section-subtitle mx-auto">No hidden fees. No scope creep. You get a CMO and a marketing engine for a fraction of what a full-time hire would cost — with better results.</p>
     </div>
-    <div class="pricing-grid">
-      <div class="price-card price-setup">
-        <h3>CMO Engagement</h3>
-        <div class="price-amount">Custom</div>
-        <div class="price-period">monthly retainer</div>
-        <div class="price-desc">Your fractional CMO — a senior marketing leader who joins your team, builds the strategy, and leads execution. Engagements are scoped to your business.</div>
-        <ul class="price-list">
-          <li><span class="price-check">&#10003;</span> Full marketing audit &amp; assessment</li>
-          <li><span class="price-check">&#10003;</span> Strategy built on the Six Fundamentals</li>
-          <li><span class="price-check">&#10003;</span> Vendor &amp; team management</li>
-          <li><span class="price-check">&#10003;</span> Monthly scorecards &amp; accountability</li>
-          <li><span class="price-check">&#10003;</span> Leadership-level marketing guidance</li>
-          <li><span class="price-check">&#10003;</span> CORE system setup &amp; configuration</li>
-        </ul>
-        <a href="#book" class="price-btn">Book a Strategy Call &rarr;</a>
+    <div class="price-package">
+      <div class="price-package-badge">One Engagement. Everything Included.</div>
+      <div class="price-package-header">
+        <h3>The CORE Growth System</h3>
+        <p class="price-tagline">A senior fractional CMO paired with a proven marketing engine. Strategy, execution, and compounding intelligence &mdash; all in one package.</p>
       </div>
-      <div class="price-card price-membership">
-        <div class="price-badge">The Growth Engine</div>
-        <h3>CORE Growth System</h3>
-        <div class="price-amount">$2,700</div>
-        <div class="price-period">per month</div>
-        <div class="price-desc">A proven marketing execution system that runs alongside your CMO — ensuring consistent content, campaigns, reporting, and competitive intelligence. AI is embedded for speed. Your CMO directs everything.</div>
-        <ul class="price-list">
-          <li><span class="price-check">&#10003;</span> Weekly content production in your voice</li>
-          <li><span class="price-check">&#10003;</span> Performance scorecards &amp; reporting</li>
-          <li><span class="price-check">&#10003;</span> Competitive intelligence &amp; market monitoring</li>
-          <li><span class="price-check">&#10003;</span> Campaign planning &amp; execution</li>
-          <li><span class="price-check">&#10003;</span> CRM hygiene &amp; lead management</li>
-          <li><span class="price-check">&#10003;</span> AI visibility &amp; search optimization</li>
-          <li><span class="price-check">&#10003;</span> You own the system — it stays with you</li>
-        </ul>
+      <div class="price-components">
+        <div class="price-component">
+          <div class="price-component-label">Your CMO</div>
+          <h4>Strategic Leadership</h4>
+          <div class="price-amount">Custom</div>
+          <div class="price-period">monthly retainer &mdash; scoped to your business</div>
+          <ul class="price-list">
+            <li><span class="price-check">&#10003;</span> Full marketing audit &amp; assessment</li>
+            <li><span class="price-check">&#10003;</span> Strategy built on the Six Fundamentals</li>
+            <li><span class="price-check">&#10003;</span> Vendor &amp; team management</li>
+            <li><span class="price-check">&#10003;</span> Leadership-level marketing guidance</li>
+            <li><span class="price-check">&#10003;</span> CORE system setup &amp; configuration</li>
+          </ul>
+        </div>
+        <div class="price-component">
+          <div class="price-component-label">The Engine</div>
+          <h4>CORE Growth System</h4>
+          <div class="price-amount">$2,700</div>
+          <div class="price-period">per month</div>
+          <ul class="price-list">
+            <li><span class="price-check">&#10003;</span> Weekly content production in your voice</li>
+            <li><span class="price-check">&#10003;</span> Performance scorecards &amp; reporting</li>
+            <li><span class="price-check">&#10003;</span> Competitive intelligence &amp; monitoring</li>
+            <li><span class="price-check">&#10003;</span> Campaign planning &amp; execution</li>
+            <li><span class="price-check">&#10003;</span> CRM hygiene &amp; lead management</li>
+            <li><span class="price-check">&#10003;</span> AI visibility &amp; search optimization</li>
+          </ul>
+        </div>
+      </div>
+      <div class="price-package-total">
+        <div class="total-label">Your Total Investment</div>
+        <div class="total-amount">CMO retainer + <span>$2,700/mo</span> for the growth engine</div>
+        <div class="total-note">Less than half the cost of a single full-time marketing hire &mdash; with better results, better accountability, and no ramp-up time.</div>
+      </div>
+      <div class="price-package-cta">
         <a href="#book" class="price-btn">Book a Strategy Call &rarr;</a>
       </div>
       <div class="price-founding">
-        <p><strong>Your CMO engagement + CORE run together as one package.</strong> Combined, you get senior marketing leadership and a full marketing engine for less than half the cost of a single full-time marketing hire — with better results, better accountability, and no ramp-up time.</p>
-        <div style="margin-top: 20px; padding: 20px 24px; background: var(--navy); border-radius: 10px; text-align: center;">
-          <div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px;">Limited Availability</div>
-          <div style="font-family: 'Raleway', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 8px;">Founding 10 &mdash; Early Access</div>
-          <p style="font-size: 14px; color: rgba(255,255,255,0.75); margin: 0 0 4px; line-height: 1.6;">We're onboarding only 10 companies in the founding cohort. Founding members get direct access to the team building the system, priority onboarding, and input that shapes the product. Once the 10 spots fill, the next cohort opens at standard pricing.</p>
+        <div style="padding: 16px 20px; background: var(--navy); border-radius: 10px; display: inline-block; margin-bottom: 10px;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 4px;">Limited Availability</div>
+          <div style="font-family: 'Raleway', sans-serif; font-size: 18px; font-weight: 800; color: var(--white);">Founding 10 &mdash; Early Access</div>
         </div>
+        <p>We're onboarding only 10 companies in the founding cohort. Founding members get direct access to the team building the system, priority onboarding, and input that shapes the product.</p>
       </div>
     </div>
     <!-- COST COMPARISON -->
@@ -1645,9 +1685,9 @@ body {
           <div style="font-size: 11px; color: var(--gray-400); margin-top: 8px;">You're still the CMO</div>
         </div>
         <div style="text-align: center; padding: 24px 14px; background: var(--gold-subtle); border-radius: 10px; border: 2px solid var(--gold);">
-          <div style="font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px;">All Three</div>
-          <div style="font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">CORE System</div>
-          <div style="font-family: 'Raleway', sans-serif; font-size: 26px; font-weight: 800; color: var(--gold);">$2,700</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px;">All Included</div>
+          <div style="font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">yorCMO + CORE</div>
+          <div style="font-family: 'Raleway', sans-serif; font-size: 22px; font-weight: 800; color: var(--gold);">CMO +<br>$2,700</div>
           <div style="font-size: 12px; color: var(--gray-600);">per month</div>
           <div style="font-size: 11px; font-weight: 600; color: var(--gold); margin-top: 8px;">Strategy + Execution + AI</div>
         </div>
