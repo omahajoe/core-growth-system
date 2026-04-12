@@ -1160,9 +1160,105 @@
                 grid-template-columns: 1fr;
             }
         }
+        /* LOGIN OVERLAY */
+        .login-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, #1B2A4A 0%, #2E8B8B 100%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .login-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .login-card {
+            background: white;
+            border-radius: 16px;
+            padding: 48px 40px;
+            width: 400px;
+            max-width: 90vw;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .login-logo {
+            font-family: 'Raleway', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+        .login-logo .teal { color: var(--teal); }
+        .login-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+        .login-field {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-light);
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Lato', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+            margin-bottom: 16px;
+        }
+        .login-field:focus {
+            border-color: var(--teal);
+        }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--teal);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .login-btn:hover {
+            background: #247272;
+        }
+        .login-error {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 12px;
+            min-height: 20px;
+        }
+        .login-footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        body.locked {
+            overflow: hidden;
+        }
     </style>
 </head>
-<body>
+<body class="locked">
+    <!-- LOGIN OVERLAY -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-card">
+            <div class="login-logo">yor<span class="teal">CMO</span></div>
+            <div class="login-subtitle">CORE Growth System — Client Portal</div>
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <input type="password" class="login-field" id="loginPassword" placeholder="Enter your client password" autocomplete="current-password" autofocus>
+                <button type="submit" class="login-btn">Sign In</button>
+            </form>
+            <div class="login-error" id="loginError"></div>
+            <div class="login-footer">Protected client portal · Contact your CMO for access</div>
+        </div>
+    </div>
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo">yor<span class="teal">CMO</span></div>
@@ -1290,7 +1386,7 @@
                         </div>
 
                         <div class="wig-meta">
-                            <div class="wig-from-to">██ active (target: ██) · █ new this tri (target: █) · MRR $███K vs $███K target · Week ██ of 17</div>
+                            <div class="wig-from-to">26 active CMOs (target: 27) · 0 new this tri (target: 6) · MRR $120K vs $172K target · Week 11 of 17</div>
                             <div class="wig-status-badge off-track" style="background: rgba(231,76,60,0.2); color: #E74C3C;">
                                 <div class="wig-status-dot" style="background: #E74C3C;"></div>
                                 Off Track — 0 new CMOs, MRR 30% below, pipeline dry, 3/6 rocks off track
@@ -1326,7 +1422,7 @@
                         </div>
                         <div class="win-item">
                             <div class="win-toggle off"><div class="win-toggle-dot"></div></div>
-                            <div class="win-text">MRR $███K vs $███K target — 30% below, flat 10+ weeks</div>
+                            <div class="win-text">MRR $120K vs $172K target — 30% below, flat 10+ weeks</div>
                         </div>
                         <div class="win-item">
                             <div class="win-toggle off"><div class="win-toggle-dot"></div></div>
@@ -1372,7 +1468,7 @@
                             </div>
                             <div class="rock-info">
                                 <div class="rock-name">Coordinator → Marketing Manager Transition</div>
-                                <div class="rock-detail">[Owner 6] · 1/7 milestones · No check-ins ever · Off Track</div>
+                                <div class="rock-detail">Marshall Poindexter · 1/7 milestones · No check-ins ever · Off Track</div>
                             </div>
                         </div>
 
@@ -1388,7 +1484,7 @@
                             </div>
                             <div class="rock-info">
                                 <div class="rock-name">Incorporate AI into Brand &amp; Positioning</div>
-                                <div class="rock-detail">[Owner 2] · 1/4 milestones · Owner says On Track · 25% at week 9</div>
+                                <div class="rock-detail">Marguerite Yeo · 1/4 milestones · Owner says On Track · 25% at week 9</div>
                             </div>
                         </div>
 
@@ -1420,7 +1516,7 @@
                             </div>
                             <div class="rock-info">
                                 <div class="rock-name">Standardize &amp; De-Risk Licensing Process</div>
-                                <div class="rock-detail">[Owner 1] · 3/5 milestones · On Track (confirmed Mar 30)</div>
+                                <div class="rock-detail">Fanny Ramos · 3/5 milestones · On Track (confirmed Mar 30)</div>
                             </div>
                         </div>
 
@@ -1436,7 +1532,7 @@
                             </div>
                             <div class="rock-info">
                                 <div class="rock-name">Firm Growth System That Scales Revenue</div>
-                                <div class="rock-detail">[Owner 5] · 0/5 milestones · MVP deadline missed (Mar 31) · No check-ins ever</div>
+                                <div class="rock-detail">Chad Person · 0/5 milestones · MVP deadline missed (Mar 31) · No check-ins ever</div>
                             </div>
                         </div>
 
@@ -1452,7 +1548,7 @@
                             </div>
                             <div class="rock-info">
                                 <div class="rock-name">Content Creation &amp; Partner Nurturing Campaign</div>
-                                <div class="rock-detail">[Owner 4] · 1/4 milestones · Off Track · 3 sessions, due Mar 31 (missed)</div>
+                                <div class="rock-detail">Flor Arballo · 1/4 milestones · Off Track · 3 sessions, due Mar 31 (missed)</div>
                             </div>
                         </div>
                     </div>
@@ -1564,31 +1660,31 @@
                                 <tr>
                                     <td>Monthly Client Billable MRR</td>
                                     <td><span class="kpi-type-label lag">Lag</span></td>
-                                    <td>≥ $███.█K</td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$███K</span></td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$███K</span></td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$███K</span></td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$███K</span></td>
+                                    <td>≥ $171.8K</td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$120K</span></td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$120K</span></td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$120K</span></td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$120K</span></td>
                                     <td>🔴 -30%</td>
                                 </tr>
                                 <tr>
                                     <td>MRR Net to yorCMO</td>
                                     <td><span class="kpi-type-label lag">Lag</span></td>
-                                    <td>≥ $██.█K</td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$██K</span></td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$██K</span></td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$██K</span></td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$██K</span></td>
+                                    <td>≥ $31.1K</td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$23K</span></td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$23K</span></td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$23K</span></td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$23K</span></td>
                                     <td>🔴 -26%</td>
                                 </tr>
                                 <tr>
                                     <td>Total Real Revenue (MTD)</td>
                                     <td><span class="kpi-type-label lag">Lag</span></td>
-                                    <td>≥ $██.█K</td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$██.█K</span></td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$██.█K</span></td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$██.█K</span></td>
-                                    <td class="kpi-cell"><span class="kpi-cell-value red">$██.█K</span></td>
+                                    <td>≥ $66.6K</td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$45.5K</span></td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$46.2K</span></td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$28.3K</span></td>
+                                    <td class="kpi-cell"><span class="kpi-cell-value red">$28.3K</span></td>
                                     <td>🔴 -57%</td>
                                 </tr>
                                 <tr>
@@ -1932,7 +2028,7 @@
                         Connected
                     </div>
                     <div class="integration-name">HubSpot CRM</div>
-                    <div class="integration-desc">██,███ contacts synced</div>
+                    <div class="integration-desc">10,248 contacts synced</div>
                     <div class="integration-meta">Last sync: 2 hours ago</div>
                     <button class="btn btn-outline" style="margin-top: auto;">Manage</button>
                 </div>
@@ -2055,14 +2151,14 @@
                     <div class="activity-item">
                         <div class="activity-dot"></div>
                         <div class="activity-content">
-                            <div class="activity-text">HubSpot sync completed — ██,███ contacts, ███ active deals, 3 new contacts this week</div>
+                            <div class="activity-text">HubSpot sync completed — 10,248 contacts, 236 active deals, 3 new contacts this week</div>
                             <div class="activity-time">Today, 11:00 AM</div>
                         </div>
                     </div>
                     <div class="activity-item">
                         <div class="activity-dot"></div>
                         <div class="activity-content">
-                            <div class="activity-text">New deal created: [Prospect A] — Discovery stage, closes Jun 5</div>
+                            <div class="activity-text">New deal created: Chad Wells — Discovery stage, closes Jun 5</div>
                             <div class="activity-time">Apr 6</div>
                         </div>
                     </div>
@@ -2091,162 +2187,160 @@
         // Agent outputs — LIVE DATA from HubSpot CRM + Mac Daddy File
         // Generated: April 12, 2026
         const agentOutputs = {
-            scorecard: `WEEKLY SCORECARD — T1 2026 · Week ██ of 17
+            scorecard: `WEEKLY SCORECARD — T1 2026 · Week 11 of 17
 Agent: Scorecard Agent (CORE Growth System — LIVE DATA)
 Source: Strety (Leadership Team + Sales & Marketing) + HubSpot CRM
-Generated: April 2026
+Generated: April 12, 2026
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 WIG STATUS (from Strety — Leadership Team V/TO)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Grow [metric A] from ██ → ███ & [metric B] from ██ → ██
-  By December 2027 · T1 target: +█ net new → ██ active
-  Current: ██ active (target: ██) · █ new added in T1
-  Strety metric not updated since T1 start — carryover showing as █
-  Status: 🔴 OFF TRACK — █ of █ target, stalled 10+ weeks
+  Grow CMOs from 21 → 100 & Referral Clients from 12 → 36
+  By December 2027 · T1 target: +6 net new → 27 active
+  Current: 26 active CMOs (target: 27) · 0 new CMOs added in T1
+  Strety "New CMOs" metric not updated since T1 start — prior trimester carryover showing as 2
+  Status: 🔴 OFF TRACK — 0 of 6 target, stalled 10+ weeks
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ROCKS — T1 2026 (from Strety — Leadership Team) · 1 On / 2 At Risk / 3 Off
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🟢 [Rock A]                      [Owner 1]  3/5  60%  On Track (Mar 30)
-  🟡 [Rock B]                      [Owner 2]  1/4  25%  Active — Apr 6 check-in
-  🟡 [Rock C]                      [Owner 3]  2/4  50%  No check-in 27 days
-  🔴 [Rock D]                      [Owner 4]  1/4  25%  Deadline missed Mar 31
-  🔴 [Rock E]                      [Owner 5]  0/5   0%  NEVER checked in
-  🔴 [Rock F]                      [Owner 6]  1/7  14%  NEVER checked in
+  🟢 Licensing Process             Fanny      3/5  60%  On Track (Mar 30)
+  🟡 AI Brand & Positioning        Marguerite 1/4  25%  Active — Apr 6 check-in
+  🟡 Marketing Brain Platform      Joseph     2/4  50%  No check-in 27 days
+  🔴 Content & Partner Campaign    Flor       1/4  25%  Deadline missed Mar 31
+  🔴 Firm Growth System            Chad       0/5   0%  NEVER checked in
+  🔴 Coordinator → Mktg Manager    Marshall   1/7  14%  NEVER checked in
   ⚠  Strety self-reports 5 On / 1 Off — agent assessment differs
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 LEAD MEASURES (from Strety — Sales & Marketing Team — last 4 weeks)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Intro Meetings         ≥██/tri   █, █, █, █   ██/██  🟡 Surging!
-  Hot Leads — Referrals  ≥█/wk    █, █, █, █    █      🔴 Zero 3 wks
-  Hot Leads — Sales      ≥█/wk    █, █, █, █    █      🔴 Zero all tri
-  Hot Leads — Marketing  ≥█/wk    █, █, █, █    █      🔴 Zero all tri
-  Intro Mtgs ([Owner])   ≥█/wk    █, █, █, █    █      🔴 Avg ████
-  Deep Dives             ≥██/tri  █, █, █, █    █/██   🔴 ██% at wk ██
-  Franchise/License      ≥█       █, █, █, █    █      🔴 Zero
+  CMO Intro Meetings    ≥25/tri   8, 2, 3, 0   20/25  🟡 Surging!
+  Hot Leads — Referrals ≥1/wk    0, 0, 0, 1    9      🔴 Zero 3 wks
+  Hot Leads — Sales     ≥1/wk    0, 0, 0, 0    0      🔴 Zero all tri
+  Hot Leads — Marketing ≥1/wk    0, 0, 0, 0    0      🔴 Zero all tri
+  Intro Mtgs (Flor)     ≥2/wk    0, 1, 0, 0    8      🔴 Avg 0.62
+  CMO Deep Dives        ≥10/tri  0, 0, 1, 1    4/10   🔴 40% at wk 11
+  Franchise/License     ≥1       0, 0, 0, 0    0      🔴 Zero
   Summary: 0 🟢 · 1 🟡 · 6 🔴
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 LAG MEASURES (from Strety — Leadership Team + Sales & Marketing Team)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Client Billable MRR    $███.█K target   $███.█K  -██%  🔴
-  MRR Net to Company     $██.█K target    $██.█K   -██%  🔴
-  Real Revenue MTD       $██.█K target    $██.█K   -██%  🔴
-  New [units] (tri)      █ target         █         -███% 🔴 Stale in Strety
-  Licensee Prospects     █ target         ██         —    🟢
-  Active [units]         ██ target        ██         -█%  🔴
-  [Units] per Rep (1+)   █.█ target       █.██      -██%  🔴
+  Client Billable MRR    $171.8K target   $120.3K  -30%  🔴
+  MRR Net to yorCMO      $31.1K target    $23.0K   -26%  🔴
+  Real Revenue MTD       $66.6K target    $28.3K   -57%  🔴
+  New CMOs (tri)         6 target         0         -100% 🔴 Stale in Strety
+  Licensee CMO Prospects 0 target         21         —    🟢
+  Active CMOs            27 target        26         -4%  🔴
+  Clients per CMO (1+)   2.0 target       1.78      -11%  🔴
   Overall: 1 🟢 · 0 🟡 · 6 🔴
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CRM & PIPELINE (from HubSpot — live)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Total deals: ███ · New contacts since T1: ███
-  Active pipeline deals this week:
-  🟡 [Prospect A]              Pipeline Stage    Jun 5    Active today
-  🟡 [Prospect B]              Pipeline Stage    May 30   Apr 10
-  🟡 [Prospect C]              Pipeline Stage    Jun 7    Apr 10
-  🟡 [Prospect D]              Pipeline Stage    Mar 31   Past due
-  🟢 [Prospect E]              Qualified         Apr 27   Apr 11
-  🔴 [Prospect F]              In Progress       Apr 19   7 days out
+  Total deals: 392 · New contacts since T1: 171
+  Active CMO pipeline deals this week:
+  🟡 Chad Wells                CMO Pipeline    Jun 5    Active today
+  🟡 Pattie Pan                CMO Pipeline    May 30   Apr 10
+  🟡 Jason Frenchman           CMO Pipeline    Jun 7    Apr 10
+  🟡 Allison Ditmer            CMO Pipeline    Mar 31   Past due
+  🟢 BNZ Materials (Boston)    Qualified       Apr 27   Apr 11
+  🔴 The ProAction Group       In Progress     Apr 19   7 days out
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ALERTS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🔴 Revenue ██% below target — MRR flat at $███K for 10+ weeks
-  🔴 3 rocks off track: [Owner 5] (0%), [Owner 6] (14%), [Owner 4] (missed deadline)
+  🔴 Revenue 30% below target — MRR flat at $120K for 10+ weeks
+  🔴 3 rocks off track: Chad (0%), Marshall (14%), Flor (missed deadline)
   🔴 All 3 lead channels at zero for 3+ weeks
-  ⚠  WIG stalled — █ new in T1, target is █
-  ⚠  Deep Dives at ██% — conversion bottleneck
-  ✅ Intro Meetings surged to █ — best week of trimester
-  ✅ AI Projects Sold at █ — strong independent line
+  ⚠  WIG stalled — 0 new CMOs in T1, target is 6
+  ⚠  Deep Dives at 40% — conversion bottleneck
+  ✅ CMO Intro Meetings surged to 8 — best week of trimester
+  ✅ AI Projects Sold at 9 — strong independent line
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CMO ACTIONS THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  1. Confront [Owner 5] & [Owner 6] — zero check-ins is unacceptable
+  1. Confront Chad & Marshall — zero check-ins is unacceptable
   2. Diagnose lead pipeline shutdown — all 3 channels at zero
-  3. Protect the intro meetings momentum (█ last week)
-  4. Decide on [Owner 4]'s content rock — rescope or accept miss
-  5. Check in on your own rock — ██ days stale
-  6. Fix Strety scorecard — target stale since T1 start
+  3. Protect the intro meetings momentum (8 last week)
+  4. Decide on Flor's content rock — rescope or accept miss
+  5. Check in on your own rock (Marketing Brain — 27 days stale)
+  6. Fix Strety scorecard — "New CMOs" target should be ≥6 (shows ≥4), metric stale since T1 start`,
 
-⚠ DEMO NOTE: Metrics redacted. This is real output from live
-Strety + HubSpot data. Structure and agent logic are authentic.`,
-
-            crm: `CRM HEALTH REPORT — April 2026
+            crm: `CRM HEALTH REPORT — April 12, 2026
 Agent: CRM & Lead Ops
 Source: HubSpot CRM (Live)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 DATABASE OVERVIEW
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Total contacts:     ██,███
-  Total deals:           ███
-  Active deals:          ███
-  Closed lost:           ███
+  Total contacts:     10,248
+  Total deals:           392
+  Active deals:          236
+  Closed lost:           156
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 LIFECYCLE STAGE DISTRIBUTION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Subscribers:    █,███   ██.█%
-  Leads:            ███    █.█%
-  Customers:         ██    █.█%
-  Custom stages:  █,███   ██.█%  ⚠ NEEDS MAPPING
+  Subscribers:    1,512   14.8%
+  Leads:            777    7.6%
+  Customers:         97    0.9%
+  Custom stages:  7,862   76.7%  ⚠ NEEDS MAPPING
 
-  ⚠ ██.█% of contacts in custom lifecycle stages.
-  Pipeline reporting is unreliable without clear stage definitions.
+  ⚠ 76.7% of contacts in custom lifecycle stages (IDs: 193461304,
+  193777980, 193777981). Pipeline reporting is unreliable without
+  clear stage definitions.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ACTIVE PIPELINE (Last 48 Hours Activity)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  [Prospect A]               Qualified to Buy   Apr 27   Modified Apr 11
-  [Prospect B]               Custom stage       Dec 2025 Modified Apr 10
-  [Prospect C]               Custom stage       May 30   Modified Apr 10
-  [Prospect D]               Custom stage       Apr 19   Modified Apr 10
-  [Prospect E]               Custom stage       Jun 5    Modified Apr 10
-  [Prospect F]               Custom stage       Jun 7    Modified Apr 10
+  BNZ Materials (Boston)     Qualified to Buy   Apr 27   Modified Apr 11
+  Kelley Carroll             Custom stage       Dec 2025 Modified Apr 10
+  Pattie Pan                 Custom stage       May 30   Modified Apr 10
+  The ProAction Group        Custom stage       Apr 19   Modified Apr 10
+  Chad Wells                 Custom stage       Jun 5    Modified Apr 10
+  Jason Frenchman            Custom stage       Jun 7    Modified Apr 10
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 HYGIENE FLAGS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   SPAM/JUNK:
-  • [Contact X] (████████@████.com) — Company: "NO"
+  • MOHAMMED ARSH (arsh927860@gmail.com) — Company: "NO"
     → Recommendation: Delete or mark as spam
 
   MISSING DATA:
-  • [Contact Y] ([Company]) — No email on file
+  • Byron McFarland (The McFarland Group) — No email on file
   • Multiple contacts missing company name — enrichment needed
 
   DUPLICATE RISK:
-  • Two contacts with same first name at different orgs — Verify
-  • Two contacts both @████████.gov —
+  • Two "Jim" contacts (Jim Schriver @ TechGrowth PGH,
+    Jim Buchanan @ Synergy Industrial) — Verify not duplicates
+  • Steve Wray + Maya Spadoni both @pittsburghpa.gov —
     Associate with single company record
 
   LIFECYCLE STAGE ISSUES:
-  • 3 contacts in custom stage ████████ — appear to be referral
-    partners. Create "Referral Partner" property.
-  • 1 contact in different custom stage — what distinguishes it?
+  • Erik Frank (Petra Coach), Michael Erath (Pinnacle Business Guide),
+    Raffi Yardemian (Sales Xceleration) — All in custom stage 193777980.
+    Appear to be referral partners. Create "Referral Partner" property.
+  • Tom Daly (Sales Xceleration) — Custom stage 193777981.
+    Different from above — what distinguishes this stage?
 
   OVERDUE CLOSE DATES:
-  • [Prospect B] — Dec 2025 (███ days overdue)
-  • [Prospect G] — Sep 2025 (███ days, closed lost)
+  • Kelley Carroll — Dec 19, 2025 (114 days overdue)
+  • Vollmer America-Dan Smink — Sep 29, 2025 (196 days, closed lost)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RECOMMENDATIONS (Prioritized)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  1. URGENT: Review [Prospect D] deal — closes in 7 days
-  2. HIGH: Define custom lifecycle stages (██.█% of database)
+  1. URGENT: Review ProAction Group deal — closes in 7 days
+  2. HIGH: Define custom lifecycle stages (76.7% of database)
   3. HIGH: Run deduplication scan — same-org contacts need merging
-  4. MEDIUM: Delete spam record
-  5. MEDIUM: Enrich [Contact Y] — add email
-  6. LOW: Close or update [Prospect B] deal (███ days past close)
-  7. LOW: Create "Referral Partner" property for partner contacts
-
-⚠ DEMO NOTE: Names, emails, and counts redacted. This is real
-output from live HubSpot data. Structure and logic are authentic.`,
+  4. MEDIUM: Delete MOHAMMED ARSH spam record
+  5. MEDIUM: Enrich Byron McFarland — add email
+  6. LOW: Close or update Kelley Carroll deal (114 days past close)
+  7. LOW: Create "Referral Partner" property for partner contacts`,
 
             research: `COMPETITIVE INTELLIGENCE BRIEF
 Agent: Research & Intelligence Agent (CORE — LIVE DATA)
@@ -2311,12 +2405,12 @@ CMOX — Threat Level: LOW (recommend reclassify to Indirect)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🔍 BUYER INTELLIGENCE (from HubSpot)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Lost deal analysis (██ most recent of ███ total):
-  • ██% Unresponsive/Franchise (lead quality issue)
-  • ██% Chose Another Provider (█ deals — WHO did they choose?)
-  • ██% Doesn't See Value ($███K [Company] — messaging gap)
-  • ██% Wrong Timing
-  • ██% Lack of Budget (surprisingly low — price isn't the problem)
+  Lost deal analysis (20 most recent of 156 total):
+  • 30% Unresponsive/Franchise (lead quality issue)
+  • 20% Chose Another Provider (4 deals — WHO did they choose?)
+  • 15% Doesn't See Value ($120K Rockland Mfg — messaging gap)
+  • 15% Wrong Timing
+  • 10% Lack of Budget (surprisingly low — price isn't the problem)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 MESSAGING & CONTENT GAPS
@@ -2354,43 +2448,43 @@ MESSAGING & CONTENT GAPS
   7. MEDIUM: Update Mac Daddy File Section 6 — Chief Outsiders
      profile needs GrowthGears OS addition.`,
 
-            accountability: `WEEKLY CMO UPDATE — T1 2026 · Week ██ of 17
+            accountability: `WEEKLY CMO UPDATE — T1 2026 · Week 11 of 17
 Agent: CMO Accountability Agent (CORE — LIVE DATA)
-For: [CMO Name], Co-Founder
+For: Joseph Frost, Co-Founder
 Source: Strety (Leadership Team rocks, scorecards) + HubSpot CRM
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EXECUTIVE SUMMARY
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Week ██ of 17 — █ weeks left. Only 1 of 6 rocks is on track.
-Revenue remains ██% below target with MRR flat at $███K. Zero
-new [units] added in T1 against a target of █. The bright spot:
-Intro Meetings surged to █ last week (best of trimester).
-[Owner 5] and [Owner 6] still have ZERO check-ins. This is the
-week to confront it — waiting longer makes the problem permanent.
+Week 11 of 17 — 6 weeks left. Only 1 of 6 rocks is on track.
+Revenue remains 30% below target with MRR flat at $120K. Zero
+new CMOs added in T1 against a target of 6. The bright spot:
+CMO Intro Meetings surged to 8 last week (best of trimester).
+Chad and Marshall still have ZERO check-ins. This is the week
+to confront it — waiting longer makes the problem permanent.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🔴 ROCK ACCOUNTABILITY (from Strety — Leadership Team)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   NEEDS IMMEDIATE ATTENTION:
-  • [Owner 5] ([Rock E]) — 0/5 milestones, 0%.
-    NEVER checked in. MVP was due Mar 31 — missed by ██ days.
-  • [Owner 6] ([Rock F]) — 1/7
+  • Chad Person (Firm Growth System) — 0/5 milestones, 0%.
+    NEVER checked in. MVP was due Mar 31 — missed by 12 days.
+  • Marshall Poindexter (Coordinator → Mktg Manager) — 1/7
     milestones, 14%. NEVER checked in. Rock is invisible.
-  • [Owner 4] ([Rock D]) — 1/4 milestones,
+  • Flor Arballo (Content & Partner Campaign) — 1/4 milestones,
     25%. Self-reported Off Track. Deadline missed Mar 31. Only
-    █ sessions recorded vs █ target.
+    3 sessions recorded vs 7 target.
 
   MONITOR:
-  • [Owner 2] ([Rock B]) — 1/4, 25%. Apr 6 check-in says
-    On Track. Report delivered, 2 interviews in progress.
-    Active but 25% at week ██ is tight math.
-  • [Owner 3] ([Rock C]) — 2/4, 50%. Last check-in
-    Mar 16 — ██ days ago. You need to model the behavior.
+  • Marguerite Yeo (AI Brand) — 1/4, 25%. Apr 6 check-in says
+    On Track. CMO Interview Report delivered, 2 client interviews
+    in progress. Active but 25% at week 11 is tight math.
+  • Joseph Frost (Marketing Brain) — 2/4, 50%. Last check-in
+    Mar 16 — 27 days ago. You need to model the behavior.
 
   ON TRACK:
-  • [Owner 1] ([Rock A]) — 3/5, 60%. On Track per Mar 30
-    check-in. Legal-approved deliverables complete. ✓
+  • Fanny Ramos (Licensing) — 3/5, 60%. On Track per Mar 30
+    check-in. Legal-approved FAQs complete. ✓
 
   ⚠ NOTE: Strety pie chart shows 5 On / 1 Off. Agent assessment
   based on data: 1 On / 2 At Risk / 3 Off. Self-reported status
@@ -2399,33 +2493,30 @@ week to confront it — waiting longer makes the problem permanent.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✅ DONE THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  • █ intro meetings held — best single week of T1
-  • AI Projects Sold at █ for trimester — strong line
+  • 8 CMO intro meetings held — best single week of T1
+  • AI Projects Sold at 9 for trimester — strong line
   • Scorecard Agent running live from Strety + HubSpot data
   • CORE system architecture finalized (source-agnostic agents)
-  • █ active deals in pipeline ([Prospect A], [Prospect B], [Prospect C])
-  • Last L10 Meeting Apr 6 — rating █.█
+  • 3 active deals in CMO pipeline (Wells, Pan, Frenchman)
+  • Last L10 Meeting Apr 6 — rating 9.2
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🔴 BLOCKED / DECISIONS NEEDED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  1. [Owner 5] & [Owner 6] — zero check-ins requires direct conversation
-  2. [Owner 4]'s content rock — rescope to May 31 or accept the miss?
+  1. Chad & Marshall — zero check-ins requires direct conversation
+  2. Flor's content rock — rescope to May 31 or accept the miss?
   3. Lead channels all at zero 3+ wks — tracking issue or real gap?
-  4. [Prospect D] closes Apr 19 — 7 days, decision needed
-  5. Zero new [units] in T1 — pipeline active but no conversions yet
+  4. ProAction Group closes Apr 19 — 7 days, decision needed
+  5. Zero new CMOs in T1 — pipeline active but no conversions yet
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 → NEXT WEEK PRIORITIES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  1. Rock accountability conversations — [Owner 5], [Owner 6], [Owner 4]
-  2. Sustain Intro Meetings pace (█ → █+ next week)
-  3. Lead channel diagnosis with [Owner 4] — fix or flag
-  4. Update your own rock on Strety — ██ days stale
-  5. Close or advance [Prospect D] by Apr 15
-
-⚠ DEMO NOTE: Names and metrics redacted. This is real output
-from live Strety + HubSpot data. Structure and logic are authentic.`,
+  1. Rock accountability conversations — Chad, Marshall, Flor
+  2. Sustain CMO Intro Meetings pace (8 → 8+ next week)
+  3. Lead channel diagnosis with Flor — fix or flag
+  4. Update your own rock on Strety — 27 days stale
+  5. Close or advance ProAction Group by Apr 15`,
 
             blog: `BLOG POST — Systems Compound, Agencies Don't
 Agent: Blog Pipeline Agent (Full 6-Step Pipeline)
@@ -2831,7 +2922,7 @@ F1: KNOW WHERE YOU'RE GOING
     Model: Fractional CMO network + CORE Growth System
     CMO: Joseph Frost, Co-Founder
 
-  F1.2 Goals & KPIs — T1 2026 (Feb–May) · Week ██ of 17
+  F1.2 Goals & KPIs — T1 2026 (Feb–May) · Week 11 of 17
     WIG: Grow CMOs 21→100, Referral Clients 12→36 by Dec 2027
     T1 target: +6 net new CMOs → 27 active (currently 26)
     6 rocks: 1 on track / 2 at risk / 3 off track
@@ -2922,7 +3013,7 @@ OPERATIONAL SECTIONS
       Brand Voice, Persona Builder, Homepage Hero, Market Trends
 
   Section 8: Integrations
-    ✅ HubSpot CRM (██,███ contacts) | ✅ Google Analytics
+    ✅ HubSpot CRM (10,248 contacts) | ✅ Google Analytics
     ⚠  Social Platforms — Not connected | ⚠  Email — Not connected
 
   Section 9: How Agents Use This File
@@ -3029,12 +3120,12 @@ OPERATIONAL SECTIONS
                 ],
 
                 rocks: [
-                    { name: 'Standardize & De-Risk Licensing Process', progress: 60, color: 'green', detail: '[Owner 1] · 3/5 milestones · On Track (Mar 30) · Legal FAQ done', owner: '[Owner 1]' },
-                    { name: 'Incorporate AI into Brand & Positioning', progress: 25, color: 'yellow', detail: '[Owner 2] · 1/4 milestones · Active (Apr 6) · Interview report done', owner: '[Owner 2]' },
+                    { name: 'Standardize & De-Risk Licensing Process', progress: 60, color: 'green', detail: 'Fanny Ramos · 3/5 milestones · On Track (Mar 30) · Legal FAQ done', owner: 'Fanny Ramos' },
+                    { name: 'Incorporate AI into Brand & Positioning', progress: 25, color: 'yellow', detail: 'Marguerite Yeo · 1/4 milestones · Active (Apr 6) · Interview report done', owner: 'Marguerite Yeo' },
                     { name: 'Marketing Brain as Core Delivery Platform', progress: 50, color: 'yellow', detail: 'Joseph Frost · 2/4 milestones · No check-in since Mar 16 (27 days)', owner: 'Joseph Frost' },
-                    { name: 'Content Creation & Partner Nurturing Campaign', progress: 25, color: 'red', detail: '[Owner 4] · 1/4 milestones · Off Track · Deadline missed Mar 31', owner: '[Owner 4]' },
-                    { name: 'Firm Growth System That Scales Revenue', progress: 0, color: 'red', detail: '[Owner 5] · 0/5 milestones · NEVER checked in · MVP missed Mar 31', owner: '[Owner 5]' },
-                    { name: 'Coordinator → Marketing Manager Transition', progress: 14, color: 'red', detail: '[Owner 6] · 1/7 milestones · NEVER checked in', owner: '[Owner 6]' }
+                    { name: 'Content Creation & Partner Nurturing Campaign', progress: 25, color: 'red', detail: 'Flor Arballo · 1/4 milestones · Off Track · Deadline missed Mar 31', owner: 'Flor Arballo' },
+                    { name: 'Firm Growth System That Scales Revenue', progress: 0, color: 'red', detail: 'Chad Person · 0/5 milestones · NEVER checked in · MVP missed Mar 31', owner: 'Chad Person' },
+                    { name: 'Coordinator → Marketing Manager Transition', progress: 14, color: 'red', detail: 'Marshall Poindexter · 1/7 milestones · NEVER checked in', owner: 'Marshall Poindexter' }
                 ],
 
                 kpis: {
@@ -3048,9 +3139,9 @@ OPERATIONAL SECTIONS
                         { name: 'Franchise/License Agreements', target: '≥ 1', weeks: [0, 0, 0, 0], status: 'red', triTotal: 0 }
                     ],
                     lag: [
-                        { name: 'Monthly Client Billable MRR', target: '≥ $███.█K', weeks: ['$███.█K', '$███.█K', '$███.█K', '$███.█K'], status: 'red' },
-                        { name: 'MRR Net to yorCMO', target: '≥ $██.█K', weeks: ['$██.█K', '$██.█K', '$██.█K', '$██.█K'], status: 'red' },
-                        { name: 'Total Real Revenue (MTD)', target: '≥ $██.█K', weeks: ['$██.█K', '$██.█K', '$██.█K', '$██.█K'], status: 'red' },
+                        { name: 'Monthly Client Billable MRR', target: '≥ $171.8K', weeks: ['$120.3K', '$120.3K', '$120.3K', '$120.3K'], status: 'red' },
+                        { name: 'MRR Net to yorCMO', target: '≥ $31.1K', weeks: ['$23.0K', '$23.0K', '$23.0K', '$23.0K'], status: 'red' },
+                        { name: 'Total Real Revenue (MTD)', target: '≥ $66.6K', weeks: ['$28.3K', '$46.2K', '$45.5K', '$44.5K'], status: 'red' },
                         { name: 'New CMOs This Trimester', target: '≥ 6', weeks: [0, 0, 0, 0], status: 'red', triTotal: 0 },
                         { name: 'Licensee CMO Prospects', target: '≥ 0', weeks: [21, 17, 15, 15], status: 'green' },
                         { name: 'Total Active CMOs', target: '≥ 27', weeks: [26, 26, 26, 26], status: 'red' },
@@ -3160,6 +3251,55 @@ OPERATIONAL SECTIONS
         console.log('[CORE Growth System] ROMI Dashboard loaded');
         console.log('[Strety Integration]', StretyIntegration.status());
         console.log('[Strety] To connect: Strety.connect("your-api-key", "your-company-id")');
+
+        // ── LOGIN AUTHENTICATION ──
+        // Client passwords (SHA-256 hashed). To add a new client:
+        // 1. Pick a password
+        // 2. Run: echo -n "password" | shasum -a 256
+        // 3. Add the hash below
+        const VALID_HASHES = [
+            '73fb5cd678289cab18cb8578411dc650cb7b52840208a25363b583ec60a0f681', // client password
+            '40e81bf615f3fb106aeabab0d95951f844fee3fac5bcfc03236f5b584707029c'  // demo password
+        ];
+
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const pw = document.getElementById('loginPassword').value;
+            const errorEl = document.getElementById('loginError');
+            if (!pw) {
+                errorEl.textContent = 'Please enter a password.';
+                return false;
+            }
+            const hash = await sha256(pw);
+            if (VALID_HASHES.includes(hash)) {
+                // Success — unlock the portal
+                document.getElementById('loginOverlay').classList.add('hidden');
+                document.body.classList.remove('locked');
+                sessionStorage.setItem('core_auth', hash);
+                errorEl.textContent = '';
+            } else {
+                errorEl.textContent = 'Invalid password. Contact your CMO for access.';
+                document.getElementById('loginPassword').value = '';
+                document.getElementById('loginPassword').focus();
+            }
+            return false;
+        }
+
+        // Check if already authenticated this session
+        (function checkAuth() {
+            const stored = sessionStorage.getItem('core_auth');
+            if (stored && VALID_HASHES.includes(stored)) {
+                document.getElementById('loginOverlay').classList.add('hidden');
+                document.body.classList.remove('locked');
+            }
+        })();
 
         // WIG progress animation on load
         window.addEventListener('load', function() {
